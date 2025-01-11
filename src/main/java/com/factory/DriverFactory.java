@@ -28,8 +28,10 @@ public class DriverFactory {
 	 */
 	public static WebDriver init_driver(String browser) {
 		if (browser.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
-			WebDriverManager.chromedriver().setup();
+			
+			//runs tests in GUI mode
+			//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+			//WebDriverManager.chromedriver().setup();
 
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--remote-debugging-port=9222"); // Use an open port
@@ -38,7 +40,7 @@ public class DriverFactory {
 			options.addArguments("--remote-allow-origins=*");
 
 			// enable this to run tests in headless
-			// options.addArguments("--headless");
+			options.addArguments("--headless");
 
 			tlDriver.set(new ChromeDriver(options));
 			getDriver().manage().deleteAllCookies();
